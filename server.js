@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors"); // Import the cors package
-const port = 3008;
+require("dotenv").config();
+const port = process.env.PORT || 3009;
 const mongoose = require("mongoose");
 const adduniversity = require("./dataroutes/universities");
 const medicalfetch = require("./dataroutes/medicalfetch");
@@ -31,17 +32,15 @@ const russianMedicalRoutes = require("./routes/russianMedicalRoutes");
 const collegesRoutes = require("./routes/collegesRoutes");
 const mbbsInquiryRoute = require("./routes/mbbsInquiryRoute");
 const pgInquiryRoutes = require("./routes/pgInquiryRoutes");
-
 mongoose
- .connect(
-  "mongodb+srv://pushpendra:4321@cluster0.edbmizv.mongodb.net/data?retryWrites=true&w=majority"
- )
- .then(() => {
-  console.log("Connected to database MongoDB");
+ .connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000,
  })
- .catch((error) => {
-  console.error("MongoDB connection error:", error);
- });
+ .then(() => console.log("✅ Connected to database"))
+ .catch((error) => console.error("❌ MongoDB connection error:", error));
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cors());
