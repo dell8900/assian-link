@@ -88,6 +88,9 @@ app.get("/api/medical/:collegename", async (req, res) => {
   res.status(500).json({ message: "Internal server error" });
  }
 });
+app.get("/", (req, res) => {
+ res.send("Hello from the server");
+});
 app.listen(port, () => {
  console.log("Server is running on port", port);
 });
