@@ -1,4 +1,4 @@
-const AdminUser = require("../models/adminUser");
+const AdminUser = require("../models/AdminUser");
 
 exports.getAllAdmins = async (req, res) => {
  try {
