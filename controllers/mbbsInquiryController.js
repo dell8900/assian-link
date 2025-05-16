@@ -29,10 +29,25 @@ exports.createInquiry = async (req, res) => {
 // Get all inquiries
 exports.getAllInquiries = async (req, res) => {
  try {
-  const inquiries = await MbbsInquiry.find().sort({ createdAt: -1 });
-  res.status(200).json(inquiries);
+  const page = parseInt(req.query.page) || 1; // default: page 1
+  const limit = parseInt(req.query.limit) || 8; // default: 8 per page
+  const skip = (page - 1) * limit;
+
+  const total = await MbbsInquiry.countDocuments();
+  const inquiries = await MbbsInquiry.find()
+   .sort({ createdAt: -1 })
+   .skip(skip)
+   .limit(limit);
+
+  res.status(200).json({
+   success: true,
+   inquiries,
+   total,
+   page,
+   totalPages: Math.ceil(total / limit),
+  });
  } catch (error) {
-  res.status(500).json({ message: "Server error", error });
+  res.status(500).json({ success: false, message: "Server error", error });
  }
 };
 

@@ -62,12 +62,12 @@ exports.createBtechInquiry = async (req, res) => {
   res.status(500).json({ success: false, message: "Server Error", error });
  }
 };
-
 exports.getAllBtechInquiries = async (req, res) => {
  try {
   const inquiries = await BtechInquiry.find().sort({ createdAt: -1 });
   res.status(200).json({ success: true, data: inquiries });
  } catch (error) {
+  console.error(error);
   res.status(500).json({ success: false, message: "Server Error", error });
  }
 };

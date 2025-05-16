@@ -6419,7 +6419,7 @@ const colleges = [
 ];
 
 axios
- .post("http://localhost:3008/api/engg-colleges/bulk", colleges)
+ .post("https://assian-link.vercel.app/api/engg-colleges/bulk", colleges)
  .then((res) => {
   console.log("✅ Upload Success:", res.data.message);
  })

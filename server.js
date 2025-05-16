@@ -32,6 +32,10 @@ const russianMedicalRoutes = require("./routes/russianMedicalRoutes");
 const collegesRoutes = require("./routes/collegesRoutes");
 const mbbsInquiryRoute = require("./routes/mbbsInquiryRoute");
 const pgInquiryRoutes = require("./routes/pgInquiryRoutes");
+const btechInquiryRoute = require("./routes/btechInquiry");
+const callbackRoutes = require("./routes/callbackRoutes");
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 mongoose
  .connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -73,7 +77,10 @@ app.use("/api", russianMedicalRoutes);
 app.use("/api", collegesRoutes);
 app.use("/api/mbbs-inquiry", mbbsInquiryRoute);
 app.use("/api/pg-inquiries", pgInquiryRoutes);
-
+app.use("/api/btech-inquiry", btechInquiryRoute);
+app.use("/api/callbacks", callbackRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api", adminRoutes);
 app.get("/api/medical/:collegename", async (req, res) => {
  try {
   const collegename = req.params.collegename;

@@ -1109,7 +1109,7 @@ const collegesArray = [
 ];
 
 axios
- .post("http://localhost:3008/api/college/bulk", collegesArray)
+ .post("https://assian-link.vercel.app/api/college/bulk", collegesArray)
  .then((response) => {
   console.log("Bulk colleges added successfully:", response.data.message);
  })
@@ -1152,7 +1152,7 @@ axios
 // };
 
 // axios
-//  .post("http://localhost:3008/api/college", collegeData)
+//  .post("https://assian-link.vercel.app/api/college", collegeData)
 //  .then((response) => {
 //   console.log("College added successfully:", response.data);
 //  })

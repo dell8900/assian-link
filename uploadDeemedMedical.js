@@ -6898,6 +6898,6 @@ const data = [
 ];
 
 axios
- .post("http://localhost:3008/api/deemed-medical-colleges/bulk", data)
+ .post("https://assian-link.vercel.app/api/deemed-medical-colleges/bulk", data)
  .then((res) => console.log(res.data.message))
  .catch((err) => console.error("Upload failed:", err.message));
